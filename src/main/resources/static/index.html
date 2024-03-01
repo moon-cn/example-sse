@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+  var eventSource = new EventSource('/logs/stream');
+
+    eventSource.onmessage = function (event) {
+        var logLine = event.data;
+        // 在日志视图中显示接收到的日志行
+        console.log(logLine);
+    };
+
+    eventSource.onerror = function (error) {
+        // 处理 SSE 错误
+        console.error('SSE error:', error);
+    };
+
+    // 当不再需要接收日志更新时，关闭 SSE 连接
+    // eventSource.close();
+</script>
+
+</body>
+</html>
